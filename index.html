@@ -543,48 +543,6 @@ section{transition:background .4s}
 </style>
 </head>
 <script>
-document.addEventListener("DOMContentLoaded", function(){
-
-const links = {
-"Science Beyond One Path":"https://www.linkedin.com/pulse/science-beyond-one-path-la-investigación-científica-luis-daniel-z7ilf/",
-"Autism Spectrum: El autismo no es un rompecabezas":"https://www.linkedin.com/pulse/autism-spectrum-puzzle-el-autismo-es-un-rompecabezas-luis-daniel-i8e9f/",
-"Abordaje Multidisciplinario en Trastornos de la Conducta Alimentaria":"https://www.researchgate.net/publication/388526384_ABORDAJE_MULTIDISCIPLINARIO_DE_LOS_TRASTORNOS_DE_CONDUCTAS_ALMENTARIAS",
-"Relación Disfuncional con la Comida":"https://www.youtube.com/watch?v=RuJp5vXgGmI",
-"Kundalini: From Neurobiological Metaphor to a Transformative Event":"https://www.linkedin.com/pulse/kundalini-from-neurobiological-metaphor-deeply-event-luis-daniel-uzipf/",
-"Patrones Alimentarios Disfuncionales":"https://www.youtube.com/watch?v=pEKB9bRd8oM",
-"Carbohidratos: Mitos y Evidencia Científica":"https://www.linkedin.com/feed/update/urn:li:activity:7170961810949369856/",
-"Semaglutide and Alcohol Use Disorder":"https://www.linkedin.com/pulse/semaglutide-could-decrease-alcohol-use-disorder-los-luis-daniel-hpgxf/",
-"SIBO: Sobrecrecimiento Bacteriano del Intestino Delgado":"https://www.linkedin.com/pulse/sibo-small-intestinal-bacterial-overgrowth-del-luis-daniel/",
-"Cuatro Subtipos de Autismo":"https://www.linkedin.com/pulse/un-estudio-identifica-cuatro-subtipos-de-autismo-luis-daniel/",
-"How Do Brain Cells Die in Alzheimer's Disease?":"https://www.linkedin.com/pulse/how-do-brain-cells-die-alzheimers-disease-cómo-mueren-luis-daniel/"
-};
-
-
-document.querySelectorAll(".pub-card").forEach(card=>{
-const title = card.querySelector(".pub-title")?.innerText.trim();
-
-if(links[title]){
-card.style.cursor="pointer";
-
-card.addEventListener("click",()=>{
-window.open(links[title], "_blank");
-});
-
-card.addEventListener("mouseenter",()=>{
-card.style.transform="translateY(-4px)";
-card.style.transition="0.25s ease";
-});
-
-card.addEventListener("mouseleave",()=>{
-card.style.transform="translateY(0)";
-});
-}
-});
-
-
-});
-</script>
-<script>
 document.addEventListener("DOMContentLoaded", function () {
 
   /* ===============================
@@ -741,7 +699,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 });
-</script>
 </script>
 
 <body>
@@ -955,7 +912,7 @@ document.addEventListener("DOMContentLoaded", function () {
       <div class="nov-card animate-on-scroll animate-delay-2">
         <div class="nov-card-img" style="background:#f8f4ff;padding:16px;overflow:hidden;display:flex;align-items:center;justify-content:center"><img src="Photos/enevidencia.svg" style="max-width:100%;max-height:100%;object-fit:contain" alt="En Evidencia"></div>
         <div class="nov-card-body">
-          <div class="nov-card-tag" style="background:rgba(170,170,255,0.15);color:#5555CC">Video</div>
+          <div class="nov-card-tag" style="background:rgba(170,170,255,0.15);color:#5555CC">Publicación</div>
           <div class="nov-card-title">Trastornos Alimentarios en Evidencia</div>
           <div class="nov-card-desc">Nuevo libro de Dr. Patiño Martin y Lic. Champagne presentado en la Feria del Libro Buenos Aires 2023. Disponible en formato digital y físico.</div>
         </div>
@@ -989,17 +946,6 @@ document.addEventListener("DOMContentLoaded", function () {
           <div class="sede-info">Palermo, Ciudad Autónoma de Buenos Aires (1425)<br>Lunes a Viernes · 13 a 20 hs<br>📱 WhatsApp: +5491149153500</div>
           <button class="sede-btn" onclick="scrollToContact()">📅 Reservar turno</button>
         </div>
-        <script>
-function scrollToSedes() {
-  showPage('landing');
-  
-  setTimeout(() => {
-    document.getElementById('sedes').scrollIntoView({
-      behavior: 'smooth'
-    });
-  }, 100);
-}
-</script>
       </div>
       <div class="sede-card animate-on-scroll animate-delay-2">
         <div class="sede-img" style="background:#000;overflow:hidden;position:relative">
@@ -1298,6 +1244,10 @@ function scrollToSedes() {
           <textarea class="form-input" id="f-msg" rows="3" placeholder="Contanos brevemente qué estás buscando..."></textarea>
         </div>
         <button class="form-submit">Enviar consulta →</button>
+        <!-- Privacy notice — required by Ley 25.326 (Protección de Datos Personales) -->
+        <p style="font-size:11px;color:rgba(22,13,79,0.4);margin-top:10px;line-height:1.6">
+          Al enviar este formulario aceptás que tus datos sean utilizados exclusivamente para coordinar tu consulta, de conformidad con la <strong>Ley 25.326</strong> de Protección de Datos Personales. Podés solicitar su eliminación en cualquier momento escribiendo a <a href="mailto:infomedynac@gmail.com" style="color:inherit">infomedynac@gmail.com</a>.
+        </p>
       </div>
       <div class="contact-info-card animate-on-scroll animate-delay-2">
         <img src="Medynac Logo/blue with white bkg.png" style="width:56px;height:56px;object-fit:contain;margin-bottom:20px;border-radius:12px" alt="MEDYNAC">
@@ -1468,7 +1418,7 @@ function scrollToSedes() {
         <div class="team-desc">Médica (UBA). Especialista en Pediatría (UBA). Residencia Completa en Pediatría (Htal. Churra Visca). Rotaciones en Garrahan, Maternidad Sardá, Ramos Mejía, Elizalde. Diploma en Medio Interno (Htal. Alvarez). Posgrado en Medicina Interna Pediátrica (Htal. Gutierrez). Posgrado en Neumonología y en Inmunizaciones (Htal. Gutiérrez). Proveedora de Soporte Vital Avanzado Pediátrico (SVAP/PALS).</div>
       </div>
       <div class="team-card">
-        <div class="team-avatar" style="background:var(--peri);color:var(--navy)">NG</div>
+        <div class="team-avatar" style="background:var(--peri);color:var(--navy)">MLV</div>
         <div class="team-name">Dra. María Lourdes Vera Rueda</div>
         <div class="team-role" style="color:#5555CC">NeuroPsiquiatría</div>
         <div class="team-desc">Médica (UCC). Especialista en Psiquiatría (UBA). Especialista en Medicina Interna (UBA). Ex-Residente Hospital Ramos Mejía y Hospital Durand</div>
@@ -2265,8 +2215,28 @@ function scrollToSedes() {
       <div class="footer-link">📍 Yerba Buena, Tucumán</div>
     </div>
   </div>
+  <!-- REGULATORY STRIP — AFIP badge + legal entity info (required by Argentine law) -->
+  <div style="border-top:1px solid rgba(255,255,255,0.08);padding:24px 0 20px;display:flex;flex-wrap:wrap;align-items:center;gap:20px">
+    <!-- AFIP DATAWEB badge: mandatory for Argentine registered businesses -->
+    <a href="http://qr.afip.gob.ar/?qr=_M3dFB3awwMxA0S-8NufaQ,," target="_F960AFIPInfo" title="Verificar datos fiscales en AFIP" style="flex-shrink:0">
+      <img src="http://www.afip.gob.ar/images/f960/DATAWEB.jpg" border="0" alt="AFIP Data Fiscal" style="height:46px;width:auto;display:block">
+    </a>
+    <div style="flex:1;min-width:200px">
+      <div style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.8">
+        <strong style="color:rgba(255,255,255,0.75)">MEDYNAC S.R.L.</strong> · CUIT: 30-71578108-1<br>
+        Sánchez de Bustamante 1945 PB, Palermo, CABA (C1425BUH) · Argentina<br>
+        <!-- NOTE: Add Habilitación Municipal (CABA/Tucumán) and Matrícula del Director Médico when available -->
+        Los datos personales ingresados en este formulario son tratados conforme a la Ley 25.326 de Protección de Datos Personales. No se ceden a terceros.
+      </div>
+    </div>
+  </div>
+
   <div class="footer-bottom">
-    <div class="footer-copy">MEDYNAC © 2026. Todos los derechos reservados. Buenos Aires, Argentina.</div>
+    <div style="display:flex;flex-direction:column;gap:4px">
+      <div class="footer-copy">MEDYNAC © 2026. Todos los derechos reservados. Buenos Aires, Argentina.</div>
+      <!-- Website credit -->
+      <div style="font-size:11px;opacity:0.2;color:var(--white)">Diseño y desarrollo web: Victoria Patiño</div>
+    </div>
     <div style="display:flex;gap:16px">
       <a href="https://www.instagram.com/medynac/" target="_blank" rel="noopener noreferrer" class="footer-link" style="margin:0">Instagram</a>
       <a href="https://www.facebook.com/groups/229653612537129" target="_blank" rel="noopener noreferrer" class="footer-link" style="margin:0">Facebook</a>
@@ -2432,13 +2402,41 @@ document.addEventListener('click', (e) => {
   setTimeout(() => r.remove(), 650);
 });
 
-// Form submit → opens WhatsApp with pre-filled message using form values
+// ─── scrollToSedes ───────────────────────────────────────────────────────────
+// Navigates to the landing page then scrolls to the #sedes section.
+function scrollToSedes() {
+  showPage('landing');
+  setTimeout(() => {
+    document.getElementById('sedes').scrollIntoView({ behavior: 'smooth' });
+  }, 100);
+}
+
+// ─── CONTACT FORM SUBMIT ─────────────────────────────────────────────────────
+// Validates required fields before opening WhatsApp with a pre-filled message.
+// At minimum, name or phone must be provided so staff can reply.
 document.querySelector('.form-submit').addEventListener('click', () => {
-  const name = document.getElementById('f-nombre').value.trim();
+  const name  = document.getElementById('f-nombre').value.trim();
   const phone = document.getElementById('f-tel').value.trim();
-  const spec = document.getElementById('f-esp').value;
-  const mod  = document.getElementById('f-mod').value;
-  const msg  = encodeURIComponent(`Hola! Me llamo ${name||'[nombre]'}. Me interesa consultar sobre: ${spec}. Modalidad preferida: ${mod}. Mi teléfono es ${phone||'[teléfono]'}.`);
+  const email = document.getElementById('f-email').value.trim();
+  const spec  = document.getElementById('f-esp').value;
+  const mod   = document.getElementById('f-mod').value;
+
+  if (!name) {
+    alert('Por favor ingresá tu nombre completo antes de enviar.');
+    document.getElementById('f-nombre').focus();
+    return;
+  }
+  if (!phone && !email) {
+    alert('Por favor ingresá al menos un teléfono o email para que podamos contactarte.');
+    document.getElementById('f-tel').focus();
+    return;
+  }
+
+  const msg = encodeURIComponent(
+    `Hola! Me llamo ${name}. Me interesa consultar sobre: ${spec}. Modalidad preferida: ${mod}.` +
+    (phone ? ` Mi teléfono es ${phone}.` : '') +
+    (email ? ` Mi email es ${email}.` : '')
+  );
   window.open(`https://wa.me/5491149153500?text=${msg}`, '_blank');
 });
 </script>
