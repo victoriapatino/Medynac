@@ -113,20 +113,20 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,251,252
 .hero-card-tag{display:inline-block;padding:4px 12px;border-radius:100px;font-size:10px;font-weight:600;margin-top:10px}
 
 /* SECTIONS */
-section{padding:96px 80px}
+section{padding:70px 80px}
 section.alt{background:var(--gray)}
 section.dark{background:var(--navy);color:var(--white)}
 .sec-label{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--teal);margin-bottom:10px;font-weight:600}
 .sec-label.dark{color:var(--celeste)}
 .sec-title{font-size:clamp(28px,3.5vw,48px);font-weight:700;letter-spacing:-1px;line-height:1.1;margin-bottom:16px}
 .sec-title em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400}
-.sec-sub{font-size:16px;line-height:1.75;opacity:0.6;max-width:560px;margin-bottom:56px}
+.sec-sub{font-size:16px;line-height:1.75;opacity:0.6;max-width:560px;margin-bottom:30px}
 
 /* ESPECIALIDADES CARDS */
 .spec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.spec-card{border-radius:20px;padding:32px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;border:1px solid transparent}
+.spec-card{border-radius:20px;padding:22px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;border:1px solid transparent}
 .spec-card:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(22,13,79,0.12)}
-.spec-card-icon{font-size:32px;margin-bottom:16px}
+.spec-card-icon{font-size:32px;margin-bottom:10px}
 .spec-card-color{width:4px;height:40px;border-radius:2px;margin-bottom:16px}
 .spec-card-title{font-size:18px;font-weight:700;margin-bottom:8px}
 .spec-card-desc{font-size:13px;line-height:1.7;opacity:0.7}
@@ -266,6 +266,10 @@ footer{background:var(--navy);color:var(--white);padding:64px 80px 32px}
 
 /* DIVIDER */
 .divider{width:56px;height:3px;border-radius:2px;margin-bottom:48px}
+.sec-sub-full{
+  max-width:100% !important;
+  width:100%;
+}
 
 /* ANIMATIONS */
 @keyframes fadeInUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
@@ -350,6 +354,7 @@ section{transition:background .4s}
   .sedes-grid::-webkit-scrollbar{display:none}
   .sedes-grid .sede-card{flex:0 0 85vw;min-width:85vw;scroll-snap-align:start}
 }
+
 
 /* MOBILE HERO LAYOUT */
 @media(max-width:600px){
@@ -581,33 +586,77 @@ card.style.transform="translateY(0)";
 </script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+
+  /* ===============================
+     RESEARCH CARDS (.pub-card)
+  =============================== */
+  const links = {
+    "Science Beyond One Path":"https://www.linkedin.com/pulse/science-beyond-one-path-la-investigación-científica-luis-daniel-z7ilf/",
+    "Autism Spectrum: El autismo no es un rompecabezas":"https://www.linkedin.com/pulse/autism-spectrum-puzzle-el-autismo-es-un-rompecabezas-luis-daniel-i8e9f/",
+    "Abordaje Multidisciplinario en Trastornos de la Conducta Alimentaria":"https://www.researchgate.net/publication/388526384_ABORDAJE_MULTIDISCIPLINARIO_DE_LOS_TRASTORNOS_DE_CONDUCTAS_ALMENTARIAS",
+    "Relación Disfuncional con la Comida":"https://www.youtube.com/watch?v=RuJp5vXgGmI",
+    "Kundalini: From Neurobiological Metaphor to a Transformative Event":"https://www.linkedin.com/pulse/kundalini-from-neurobiological-metaphor-deeply-event-luis-daniel-uzipf/",
+    "Patrones Alimentarios Disfuncionales":"https://www.youtube.com/watch?v=pEKB9bRd8oM",
+    "Carbohidratos: Mitos y Evidencia Científica":"https://www.linkedin.com/feed/update/urn:li:activity:7170961810949369856/",
+    "Semaglutide and Alcohol Use Disorder":"https://www.linkedin.com/pulse/semaglutide-could-decrease-alcohol-use-disorder-los-luis-daniel-hpgxf/",
+    "SIBO: Sobrecrecimiento Bacteriano del Intestino Delgado":"https://www.linkedin.com/pulse/sibo-small-intestinal-bacterial-overgrowth-del-luis-daniel/",
+    "Cuatro Subtipos de Autismo":"https://www.linkedin.com/pulse/un-estudio-identifica-cuatro-subtipos-de-autismo-luis-daniel/",
+    "How Do Brain Cells Die in Alzheimer's Disease?":"https://www.linkedin.com/pulse/how-do-brain-cells-die-alzheimers-disease-cómo-mueren-luis-daniel/"
+  };
+
+  document.querySelectorAll(".pub-card").forEach(card => {
+    const title = card.querySelector(".pub-title")?.innerText.trim();
+
+    if (links[title]) {
+      card.style.cursor = "pointer";
+
+      card.addEventListener("click", () => {
+        window.open(links[title], "_blank");
+      });
+
+      card.addEventListener("mouseenter", () => {
+        card.style.transform = "translateY(-4px)";
+        card.style.transition = "0.25s ease";
+      });
+
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "translateY(0)";
+      });
+    }
+  });
+
+  /* ===============================
+     NEWS / NOVEDADES (.nov-card)
+  =============================== */
   document.querySelectorAll(".nov-card").forEach(card => {
     const title = card.querySelector(".nov-card-title")?.innerText.trim();
 
     if (title === "Diplomatura en Trastornos de la Conducta Alimentaria") {
       card.style.cursor = "pointer";
 
-      card.addEventListener("click", function () {
+      card.addEventListener("click", () => {
         window.open(
           "https://www.udemm.edu.ar/actividades/diplomatura-en-trastornos-de-la-conducta-alimentaria-en-ninos-adolescentes-y-adultos/",
           "_blank"
         );
       });
     }
-if (title === "Trastornos Alimentarios en Evidencia") {
-  card.style.cursor = "pointer";
 
-  card.addEventListener("click", function () {
-    window.open(
-      "https://www.mercadolibre.com.ar/trastornos-alimentarios-en-evidencia/up/MLAU235593491#polycard_client=search-desktop&search_layout=grid&position=1&type=product&tracking_id=2a3d7a62-fe8b-4ab9-a33e-d511de17b630&wid=MLA1388081594&sid=search",
-      "_blank"
-    );
-  });
-}
+    if (title === "Trastornos Alimentarios en Evidencia") {
+      card.style.cursor = "pointer";
+
+      card.addEventListener("click", () => {
+        window.open(
+          "https://www.mercadolibre.com.ar/trastornos-alimentarios-en-evidencia/up/MLAU235593491",
+          "_blank"
+        );
+      });
+    }
+
     if (title === "Nuevas publicaciones en LinkedIn") {
       card.style.cursor = "pointer";
 
-      card.addEventListener("click", function () {
+      card.addEventListener("click", () => {
         window.open(
           "https://www.linkedin.com/newsletters/medynac-healthcare-7097348647482200064/",
           "_blank"
@@ -615,43 +664,84 @@ if (title === "Trastornos Alimentarios en Evidencia") {
       });
     }
   });
-});
 
-document.addEventListener("DOMContentLoaded", function () {
-
+  /* ===============================
+     SEDES (.sede-card)
+  =============================== */
   document.querySelectorAll(".sede-card").forEach(card => {
     const city = card.querySelector(".sede-img-label")?.innerText.trim();
 
     if (city === "Buenos Aires") {
       card.style.cursor = "pointer";
-      card.addEventListener("click", function(e){
-        if(!e.target.closest(".sede-btn")){
-          window.open("https://maps.app.goo.gl/wmmQWHyTjptTKxoK9","_blank");
+
+      card.addEventListener("click", function (e) {
+        if (!e.target.closest(".sede-btn")) {
+          window.open(
+            "https://maps.app.goo.gl/wmmQWHyTjptTKxoK9",
+            "_blank"
+          );
         }
       });
     }
 
     if (city === "Tucumán") {
       card.style.cursor = "pointer";
-      card.addEventListener("click", function(e){
-        if(!e.target.closest(".sede-btn")){
-          window.open("https://maps.app.goo.gl/v8cJtcoYK9QB5rB76","_blank");
+
+      card.addEventListener("click", function (e) {
+        if (!e.target.closest(".sede-btn")) {
+          window.open(
+            "https://maps.app.goo.gl/v8cJtcoYK9QB5rB76",
+            "_blank"
+          );
         }
       });
     }
 
     if (city === "Marina del Rey") {
       card.style.cursor = "pointer";
-      card.addEventListener("click", function(e){
-        if(!e.target.closest(".sede-btn")){
-          window.open("https://maps.app.goo.gl/diMimfhrqxvJGTw88","_blank");
+
+      card.addEventListener("click", function (e) {
+        if (!e.target.closest(".sede-btn")) {
+          window.open(
+            "https://maps.app.goo.gl/diMimfhrqxvJGTw88",
+            "_blank"
+          );
         }
       });
     }
+  });
 
+  /* ===============================
+     CONTACT SECTION (.contact-item)
+  =============================== */
+  document.querySelectorAll(".contact-item").forEach(item => {
+    const label = item.querySelector(".contact-item-label")?.textContent.trim().toLowerCase();
+
+    if (label && label.includes("sede principal")) {
+      item.style.cursor = "pointer";
+
+      item.addEventListener("click", () => {
+        window.open(
+          "https://maps.app.goo.gl/wmmQWHyTjptTKxoK9",
+          "_blank"
+        );
+      });
+    }
+
+    if (label && (label.includes("sede tucumán") || label.includes("sede tucuman"))) {
+      item.style.cursor = "pointer";
+
+      item.addEventListener("click", () => {
+        window.open(
+          "https://maps.app.goo.gl/v8cJtcoYK9QB5rB76",
+          "_blank"
+        );
+      });
+    }
   });
 
 });
+</script>
 </script>
 
 <body>
@@ -759,7 +849,7 @@ document.addEventListener("DOMContentLoaded", function () {
   <section class="alt">
     <div class="sec-label">Nuestro enfoque</div>
     <h2 class="sec-title">Cómo te <em>cuidamos</em></h2>
-    <p class="sec-sub">Un modelo único en Argentina: todas las especialidades en un mismo espacio, coordinadas por un equipo que se comunica entre sí para diseñar tu tratamiento. Trabajamos bajo un Modelo de Investigación Clínica bajo estándares internacionales con técnicas avanzadas de probada eficacia según evidencia científica. Todos nuestros tratamientos son personalizados de acuerdo a los requerimientos y necesidades de cada consultante.</p>
+   <p class="sec-sub sec-sub-full">Un modelo único en Argentina: todas las especialidades en un mismo espacio, coordinadas por un equipo que se comunica entre sí para diseñar tu tratamiento. <br> Trabajamos bajo un modelo de Investigación Clínica bajo estándares internacionales con técnicas avanzadas de probada eficacia según evidencia científica. <br> Todos nuestros tratamientos son personalizados de acuerdo a los requerimientos y necesidades de cada consultante.</p>
     <div class="method-grid">
       <div class="method-card animate-on-scroll animate-delay-1">
         <div class="method-icon" style="background:rgba(98,187,193,0.12)">🏥</div>
@@ -812,7 +902,7 @@ document.addEventListener("DOMContentLoaded", function () {
       <div class="spec-card animate-on-scroll animate-delay-1" style="background:rgba(5,118,93,0.06);border-color:rgba(5,118,93,0.15)" onclick="showPage('nutricion')">
         <div class="spec-card-icon">🍃</div>
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><div class="spec-card-color" style="background:var(--esm);margin-bottom:0;height:28px;width:4px"></div><div class="spec-card-title" style="margin-bottom:0">Trastornos Alimentarios</div></div>
-        <div class="spec-card-desc">Anorexia, Bulimia, Atracones, ARFID, Selectividad Alimentaria en niños y otros trastornos de la conducta alimentaria. Tratamiento intensivo integral interdisciplinario con nutricionistas, psicólogos, psiquiatras, clínicos y pediatras.</div>
+        <div class="spec-card-desc">Anorexia, Bulimia, Atracones, ARFID, Selectividad Alimentaria en niños y otros trastornos de la conducta alimentaria. Tratamiento intensivo integral interdisciplinario con nutricionistas, psicólogos, psiquiatras, clínicos y pediatras.<br><br></div>
         <div class="spec-card-link" style="color:var(--esm)">Ver especialidad →</div>
       </div>
       <div class="spec-card animate-on-scroll animate-delay-2" style="background:rgba(170,170,255,0.08);border-color:rgba(170,170,255,0.2)" onclick="showPage('salud-mental')">
@@ -824,7 +914,7 @@ document.addEventListener("DOMContentLoaded", function () {
       <div class="spec-card animate-on-scroll animate-delay-3" style="background:rgba(98,187,193,0.08);border-color:rgba(98,187,193,0.2)" onclick="showPage('neurociencia')">
         <div class="spec-card-icon">⚡</div>
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><div class="spec-card-color" style="background:var(--teal);margin-bottom:0;height:28px;width:4px"></div><div class="spec-card-title" style="margin-bottom:0">Neurociencia</div></div>
-        <div class="spec-card-desc">Deterioro cognitivo, trastornos del sueño, abuso de sustancias, neuropsicología y evaluación neurocognitiva en niños y adultos.</div>
+        <div class="spec-card-desc">Deterioro cognitivo, trastornos del sueño, abuso de sustancias, neuropsicología y evaluación neurocognitiva en niños y adultos.<br><br><br><br></div>
         <div class="spec-card-link" style="color:var(--teal)">Ver especialidad →</div>
       </div>
       <div class="spec-card animate-on-scroll animate-delay-1" style="background:rgba(169,219,90,0.08);border-color:rgba(169,219,90,0.2)" onclick="showPage('nutricion')">
@@ -836,10 +926,10 @@ document.addEventListener("DOMContentLoaded", function () {
       <div class="spec-card animate-on-scroll animate-delay-2" style="background:rgba(168,216,234,0.12);border-color:rgba(168,216,234,0.25)" onclick="showPage('estetica')">
         <div class="spec-card-icon">🧠</div>
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><div class="spec-card-color" style="background:var(--celeste);margin-bottom:0;height:28px;width:4px"></div><div class="spec-card-title" style="margin-bottom:0">Salud Mental</div></div>
-        <div class="spec-card-desc">Ansiedad, Depresión, trastorno bipolar, Estrés postraumático, Trastorno de Personalidad, Abuso de Sustancias. <br> Psicología y psiquiatría adultos. </div>
+        <div class="spec-card-desc">Ansiedad, Depresión, trastorno bipolar, Estrés Postraumático, Trastorno de Personalidad, Abuso de Sustancias. <br> Psicología y psiquiatría adultos. </div>
         <div class="spec-card-link" style="color:#2A7A9A">Ver especialidad →</div>
       </div>
-      <div class="spec-card animate-on-scroll animate-delay-3" style="background:rgba(22,13,79,0.04);border-color:rgba(22,13,79,0.1)" onclick="showPage('institucional')">
+      <div class="spec-card animate-on-scroll animate-delay-3" style="background:rgba(22,13,79,0.04);border-color:rgba(22,13,79,0.1)" onclick="showPage('salud-mental')">
         <div class="spec-card-icon">👨‍👩‍👧‍👦</div>
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><div class="spec-card-color" style="background:var(--navy);margin-bottom:0;height:28px;width:4px"></div><div class="spec-card-title" style="margin-bottom:0">Adultos Mayores</div></div>
         <div class="spec-card-desc">Gerontología, Neuropsiquiatría de adultos mayores, Evaluación y Estimulación Neurocognitiva y Neuropsicológica. Cuidado en todas las etapas de la vida.</div>
