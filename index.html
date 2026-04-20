@@ -297,7 +297,7 @@ footer{background:var(--navy);color:var(--white);padding:64px 80px 32px}
 .btn-primary,.btn-secondary,.btn-teal,.nav-cta,.sede-btn{position:relative;overflow:hidden}
 .ripple-effect{position:absolute;border-radius:50%;background:rgba(255,255,255,0.35);pointer-events:none;transform:scale(0);animation:ripple .6s linear}
 
-.contact-fixed-btn{animation:pulse 2.5s ease-in-out infinite}
+.contact-fixed-btn{animation:none}
 .whatsapp-btn{animation:pulse 2.5s ease-in-out infinite 1.25s}
 
 /* DYNAMIC BACKGROUND — animated hero blobs */
@@ -539,6 +539,58 @@ section{transition:background .4s}
 
   /* HERO CARDS (hide on small mobile) */
   .hero-card-stack{display:none}
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MOBILE COMPATIBILITY PATCH
+   Fixes inline-style overrides, iOS zoom, carousel overflow, and tap targets.
+═══════════════════════════════════════════════════════════════════════════ */
+
+/* Global overflow guard — stops any element wider than viewport causing scroll */
+html,body{overflow-x:hidden;max-width:100%}
+
+/* Redes social section — moves inline padding:48px 80px into responsive CSS */
+.redes-section{padding:48px 80px;background:var(--white)}
+@media(max-width:900px){.redes-section{padding:48px 24px!important}}
+@media(max-width:600px){.redes-section{padding:36px 20px!important}}
+
+/* 5-column method grid (Salud Mental techniques) — overrides inline style */
+.method-grid-5{grid-template-columns:repeat(5,1fr)!important}
+@media(max-width:900px){.method-grid-5{grid-template-columns:repeat(3,1fr)!important}}
+@media(max-width:600px){.method-grid-5{grid-template-columns:1fr 1fr!important}}
+
+/* Vision grid — also collapse at tablet width, not just mobile */
+@media(max-width:900px){.vision-grid{grid-template-columns:1fr!important}}
+
+/* Obras sociales carousel — contain the animated track so it doesn't bleed out */
+.obras-box{overflow:hidden}
+.os-carousel-wrap{overflow:hidden;max-width:100%}
+
+/* iOS Safari auto-zoom prevention: inputs < 16px font-size trigger zoom on focus */
+@media(max-width:600px){
+  .form-input,.form-select,.form-input:focus,.form-select:focus{font-size:16px!important}
+}
+
+/* Footer bottom social links — wrap and center on small screens */
+@media(max-width:600px){
+  .footer-bottom > div:last-child{flex-wrap:wrap!important;justify-content:center!important;gap:8px!important}
+}
+
+/* Footer regulatory strip — stack badge + text vertically on mobile */
+@media(max-width:600px){
+  .footer-reg-strip{flex-direction:column!important;align-items:flex-start!important;gap:14px!important}
+  .reg-legal-text{min-width:unset!important;width:100%}
+}
+
+/* Long text overflow prevention for descriptions and reviews */
+.team-desc,.path-card-desc,.spec-card-desc,.review-text,.sede-info,.pub-authors,.nov-card-desc{
+  overflow-wrap:break-word;word-break:break-word
+}
+
+/* Minimum 44×44px tap targets for key interactive elements (Apple HIG / WCAG 2.5.5) */
+@media(max-width:900px){
+  .sede-btn,.btn-primary,.btn-secondary,.btn-teal,.nav-cta{min-height:44px}
+  .footer-link{min-height:36px;display:inline-flex;align-items:center}
 }
 </style>
 </head>
@@ -1304,7 +1356,7 @@ document.addEventListener("DOMContentLoaded", function () {
   </section>
 
   <!-- REDES SOCIALES -->
-  <section style="padding:48px 80px;background:var(--white)">
+  <section class="redes-section">
     <div class="redes-section-inner" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px">
       <div>
         <div class="sec-label" style="margin-bottom:6px">Seguinos</div>
@@ -1703,7 +1755,7 @@ document.addEventListener("DOMContentLoaded", function () {
   <section class="alt">
     <div class="sec-label">Nuestras técnicas</div>
     <h2 class="sec-title">Cómo <em>trabajamos</em></h2>
-    <div class="method-grid" style="grid-template-columns:repeat(5,1fr)">
+    <div class="method-grid method-grid-5">
       <div class="method-card"><div class="method-icon" style="background:rgba(170,170,255,0.15)">🧠</div><div class="method-title">TCC</div><div class="method-desc">Terapia Cognitivo-Conductual basada en evidencia científica.</div></div>
       <div class="method-card"><div class="method-icon" style="background:rgba(98,187,193,0.12)">🌿</div><div class="method-title">ACT</div><div class="method-desc">Terapia de Aceptación y Compromiso — tercera generación.</div></div>
       <div class="method-card"><div class="method-icon" style="background:rgba(170,170,255,0.15)">💊</div><div class="method-title">Psicofarmacología</div><div class="method-desc">Tratamiento farmacológico preciso cuando es indicado.</div></div>
@@ -2216,12 +2268,12 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
   </div>
   <!-- REGULATORY STRIP — AFIP badge + legal entity info (required by Argentine law) -->
-  <div style="border-top:1px solid rgba(255,255,255,0.08);padding:24px 0 20px;display:flex;flex-wrap:wrap;align-items:center;gap:20px">
+  <div class="footer-reg-strip" style="border-top:1px solid rgba(255,255,255,0.08);padding:24px 0 20px;display:flex;flex-wrap:wrap;align-items:center;gap:20px">
     <!-- AFIP DATAWEB badge: mandatory for Argentine registered businesses -->
     <a href="http://qr.afip.gob.ar/?qr=_M3dFB3awwMxA0S-8NufaQ,," target="_F960AFIPInfo" title="Verificar datos fiscales en AFIP" style="flex-shrink:0">
       <img src="http://www.afip.gob.ar/images/f960/DATAWEB.jpg" border="0" alt="AFIP Data Fiscal" style="height:46px;width:auto;display:block">
     </a>
-    <div style="flex:1;min-width:200px">
+    <div class="reg-legal-text" style="flex:1;min-width:200px">
       <div style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.8">
         <strong style="color:rgba(255,255,255,0.75)">MEDYNAC S.R.L.</strong> · CUIT: 30-71578108-1<br>
         Sánchez de Bustamante 1945 PB, Palermo, CABA (C1425BUH) · Argentina<br>
@@ -2276,37 +2328,50 @@ window.addEventListener('popstate', e => {
 (function(){ const h = location.hash.replace('#',''); if(h) showPage(h, false); })();
 
 // ─── REVIEWS CAROUSEL ───────────────────────────────────────────────────────
-// Desktop shows 3 slides per page; mobile shows 1.
-// revGo() translates the track by (slideWidth * slidesPerPage * pageIndex).
+// Desktop shows 3 slides per page; mobile (≤900px) shows 1.
+// revGo() translates the track by slideWidth × perPage × pageIndex.
 let revIdx = 0;
-const revPerPage = window.innerWidth > 900 ? 3 : 1;
+function getRevPerPage() { return window.innerWidth > 900 ? 3 : 1; }
 function revSetup() {
   const track = document.getElementById('revTrack');
-  const dots = document.getElementById('revDots');
-  if(!track || !dots) return;
-  const slides = track.querySelectorAll('.rev-slide');
-  const total = slides.length;
-  const pages = Math.ceil(total / 3);
+  const dots  = document.getElementById('revDots');
+  if (!track || !dots) return;
+  revIdx = 0;
+  const slides  = track.querySelectorAll('.rev-slide');
+  const perPage = getRevPerPage();
+  const pages   = Math.ceil(slides.length / perPage);
   dots.innerHTML = '';
-  for(let i=0;i<pages;i++){
+  for (let i = 0; i < pages; i++) {
     const d = document.createElement('div');
     d.style.cssText = `width:8px;height:8px;border-radius:50%;background:${i===0?'var(--navy)':'var(--border)'};cursor:pointer;transition:background .2s`;
-    d.onclick = ()=>revGo(i);
+    d.onclick = () => revGo(i);
     dots.appendChild(d);
   }
+  revGo(0);
 }
 function revGo(i) {
   const track = document.getElementById('revTrack');
-  if(!track) return;
-  const slides = track.querySelectorAll('.rev-slide');
-  const slideW = slides[0].offsetWidth + 24; // 24 = gap between slides
+  if (!track) return;
+  const slides  = track.querySelectorAll('.rev-slide');
+  const perPage = getRevPerPage();
+  const slideW  = slides[0].offsetWidth + 24; // 24px = gap
   revIdx = i;
-  track.style.transform = `translateX(-${slideW * i * 3}px)`;
-  document.querySelectorAll('#revDots div').forEach((d,j)=>{ d.style.background = j===i?'var(--navy)':'var(--border)'; });
+  track.style.transform = `translateX(-${slideW * i * perPage}px)`;
+  document.querySelectorAll('#revDots div').forEach((d, j) => {
+    d.style.background = j === i ? 'var(--navy)' : 'var(--border)';
+  });
 }
-function revPrev(){ const pages=Math.ceil(20/3); revGo(Math.max(0,revIdx-1)); }
-function revNext(){ const pages=Math.ceil(20/3); revGo(Math.min(pages-1,revIdx+1)); }
+function revPrev() {
+  revGo(Math.max(0, revIdx - 1));
+}
+function revNext() {
+  const slides  = document.querySelectorAll('#revTrack .rev-slide');
+  const pages   = Math.ceil(slides.length / getRevPerPage());
+  revGo(Math.min(pages - 1, revIdx + 1));
+}
 document.addEventListener('DOMContentLoaded', revSetup);
+// Re-initialise on resize so per-page count and dot count stay correct
+window.addEventListener('resize', () => { revSetup(); });
 
 // ─── SCROLL TO CONTACT ───────────────────────────────────────────────────────
 // Navigates to landing page first, then scrolls to the contact section.
@@ -2371,7 +2436,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   setInterval(() => {
     if (revPaused) return;
-    const pages = Math.ceil(20 / (window.innerWidth > 900 ? 3 : 1));
+    const slides = document.querySelectorAll('#revTrack .rev-slide');
+    const pages  = Math.ceil(slides.length / getRevPerPage());
     revGo(revIdx >= pages - 1 ? 0 : revIdx + 1);
   }, 4000);
 });
