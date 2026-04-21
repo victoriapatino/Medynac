@@ -161,6 +161,22 @@ section.dark{background:var(--navy);color:var(--white)}
 .sede-info{font-size:13px;opacity:0.6;line-height:1.7;margin-bottom:16px;flex:1}
 .sede-btn{padding:10px 22px;background:var(--navy);color:var(--white);border-radius:100px;font-size:13px;font-weight:600;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;align-self:flex-start}
 
+/* CONSULTORIOS CAROUSEL */
+.consultorios-carousel{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:20px;padding-bottom:12px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.consultorios-carousel::-webkit-scrollbar{display:none}
+.consultorios-carousel .consult-slide{flex:0 0 calc(33.333% - 14px);border-radius:20px;overflow:hidden;aspect-ratio:4/3;background:var(--gray);scroll-snap-align:start;flex-shrink:0}
+.consultorios-carousel .consult-slide img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+.consultorios-carousel .consult-slide:hover img{transform:scale(1.05)}
+@media(max-width:900px){.consultorios-carousel .consult-slide{flex:0 0 75vw}}
+@media(max-width:600px){.consultorios-carousel .consult-slide{flex:0 0 88vw}}
+
+/* CONSULTORIOS */
+.consultorios-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.consultorio-img{border-radius:16px;overflow:hidden;aspect-ratio:4/3;background:var(--gray);border:1px solid var(--border)}
+.consultorio-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+.consultorio-img:hover img{transform:scale(1.05)}
+.consultorio-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--mid);font-size:13px;font-weight:500;background:var(--gray)}
+
 /* OBRAS SOCIALES */
 .os-grid{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
 .os-pill{padding:10px 20px;border-radius:100px;border:1.5px solid var(--border);font-size:13px;font-weight:500;color:var(--navy);background:var(--white)}
@@ -353,6 +369,8 @@ section{transition:background .4s}
   }
   .sedes-grid::-webkit-scrollbar{display:none}
   .sedes-grid .sede-card{flex:0 0 85vw;min-width:85vw;scroll-snap-align:start}
+
+  .consultorios-grid{grid-template-columns:repeat(2,1fr)}
 }
 
 
@@ -473,6 +491,7 @@ section{transition:background .4s}
 
   /* SEDES */
   .sedes-grid{grid-template-columns:1fr;gap:20px}
+  .consultorios-grid{grid-template-columns:1fr 1fr;gap:12px}
   .sede-img{height:180px}
   .sede-body{padding:20px}
   .sede-address{font-size:14px}
@@ -1028,6 +1047,30 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
   </section>
 
+  <!-- CONSULTORIOS -->
+  <section>
+    <div class="sec-label">Nuestros espacios</div>
+    <h2 class="sec-title">Nuestros <em>consultorios</em></h2>
+    <p class="sec-sub" style="margin-bottom:36px">Ambientes diseñados para el bienestar, la privacidad y el confort de cada paciente.</p>
+    <div class="consultorios-carousel" id="consulCarousel">
+      <div class="consult-slide"><img src="Photos/consultorio1.png" alt="Consultorio"></div>
+      <div class="consult-slide"><img src="Photos/consultorio7.jpeg" alt="Consultorio"></div>
+      <div class="consult-slide"><img src="Photos/consultorio10.png" alt="Consultorio"></div>
+      <div class="consult-slide"><img src="Photos/consultorio6.png" alt="Consultorio"></div>
+      <div class="consult-slide"><img src="Photos/consultorio9.png" alt="Consultorio"></div>
+      <div class="consult-slide"><img src="Photos/consultorio3.png" alt="Consultorio"></div>
+      <div class="consult-slide"><img src="Photos/consultorio4.png" alt="Consultorio"></div>
+      <div class="consult-slide"><img src="Photos/consultorio8.png" alt="Consultorio"></div>
+    </div>
+    <div style="display:flex;justify-content:center;align-items:center;gap:16px;margin-top:24px">
+      <button onclick="consulPrev()" style="width:44px;height:44px;border-radius:50%;border:1.5px solid var(--border);background:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--navy)">‹</button>
+      <button onclick="consulNext()" style="width:44px;height:44px;border-radius:50%;border:1.5px solid var(--border);background:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--navy)">›</button>
+    </div>
+    <div style="text-align:center;margin-top:32px">
+      <button class="btn-secondary" onclick="showPage('institucional')">Ver más sobre nosotros</button>
+    </div>
+  </section>
+
   <!-- REVIEWS -->
   <section class="alt">
     <div class="sec-label">Experiencias</div>
@@ -1423,6 +1466,22 @@ document.addEventListener("DOMContentLoaded", function () {
   </section>
 
   <section class="alt">
+    <div class="sec-label">Espacios de atención</div>
+    <h2 class="sec-title">Nuestros <em>consultorios</em></h2>
+    <p class="sec-sub" style="margin-bottom:40px">Ambientes diseñados para el bienestar, la privacidad y el confort de cada paciente.</p>
+    <div class="consultorios-grid">
+      <div class="consultorio-img"><img src="Photos/consultorio1.png" alt="Consultorio"></div>
+      <div class="consultorio-img"><img src="Photos/consultorio7.jpeg" alt="Consultorio"></div>
+      <div class="consultorio-img"><img src="Photos/consultorio10.png" alt="Consultorio"></div>
+      <div class="consultorio-img"><img src="Photos/consultorio6.png" alt="Consultorio"></div>
+      <div class="consultorio-img"><img src="Photos/consultorio9.png" alt="Consultorio"></div>
+      <div class="consultorio-img"><img src="Photos/consultorio3.png" alt="Consultorio"></div>
+      <div class="consultorio-img"><img src="Photos/consultorio4.png" alt="Consultorio"></div>
+      <div class="consultorio-img"><img src="Photos/consultorio8.png" alt="Consultorio"></div>
+    </div>
+  </section>
+
+  <section class="alt">
     <div class="sec-label">El equipo</div>
     <h2 class="sec-title">Nuestros <em>profesionales</em></h2>
     <p class="sec-sub">Más de 25 especialistas con formación de excelencia, muchos con fellowships internacionales y doctorados.</p>
@@ -1668,6 +1727,8 @@ document.addEventListener("DOMContentLoaded", function () {
       </div>
     </div>
   </section>
+
+
 </div><!-- end institucional -->
 
 <!-- ══════════════════════════════════════════════
@@ -2424,7 +2485,20 @@ function autoCarousel(selector, delay) {
 document.addEventListener('DOMContentLoaded', () => {
   autoCarousel('.nov-grid', 3500);
   autoCarousel('.sedes-grid', 4500);
+  autoCarousel('.consultorios-carousel', 4000);
 });
+
+function consulNext() {
+  const el = document.getElementById('consulCarousel');
+  const cardW = el.querySelector('.consult-slide').offsetWidth + 20;
+  const maxScroll = el.scrollWidth - el.clientWidth;
+  el.scrollBy({ left: el.scrollLeft >= maxScroll - 10 ? -el.scrollLeft : cardW, behavior: 'smooth' });
+}
+function consulPrev() {
+  const el = document.getElementById('consulCarousel');
+  const cardW = el.querySelector('.consult-slide').offsetWidth + 20;
+  el.scrollBy({ left: el.scrollLeft <= 10 ? el.scrollWidth : -cardW, behavior: 'smooth' });
+}
 
 // Auto-advance reviews carousel
 document.addEventListener('DOMContentLoaded', () => {
